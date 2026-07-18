@@ -1,0 +1,289 @@
+/* --- En-tête avec portrait --- */
+
+.profil-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 20rem);
+  gap: var(--space-l);
+  align-items: end;
+}
+
+@media (max-width: 52rem) {
+  .profil-hero {
+    grid-template-columns: 1fr;
+    gap: var(--space-m);
+    align-items: start;
+  }
+}
+
+.profil-hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
+}
+
+.profil-hero-tag {
+  font-size: var(--step--1);
+  color: var(--fg-faint);
+  letter-spacing: 0.02em;
+  max-width: 42ch;
+}
+
+.profil-portrait {
+  margin: 0;
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--bg-inset);
+  /* Angle bleu royal en haut à gauche : rappel discret du logo. */
+  position: relative;
+}
+
+.profil-portrait::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-top: 2px solid var(--accent);
+  border-left: 2px solid var(--accent);
+  border-radius: 12px 0 0 0;
+}
+
+.profil-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 52rem) {
+  .profil-portrait {
+    max-width: 15rem;
+  }
+}
+
+/* --- Titres de blocs --- */
+
+.profil-h {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: var(--space-xs);
+  margin-bottom: var(--space-m);
+}
+
+/* --- Méthode --- */
+
+.visions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  margin-bottom: var(--space-2xl);
+}
+
+.vision {
+  background: var(--bg);
+  padding: var(--space-m) var(--space-s);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+}
+
+
+.vision-title {
+  font-size: var(--step-1);
+  line-height: 1.2;
+}
+
+.vision-desc {
+  font-size: var(--step--1);
+  color: var(--fg-muted);
+  line-height: 1.55;
+}
+
+/* --- Forces / points d'attention --- */
+
+.balance {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-l);
+  margin-bottom: var(--space-2xl);
+}
+
+@media (max-width: 56rem) {
+  .balance {
+    grid-template-columns: 1fr;
+  }
+}
+
+.balance-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
+}
+
+.balance-title {
+  margin: 0;
+}
+
+.balance-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding-bottom: var(--space-xs);
+  border-bottom: 1px solid var(--rule);
+  width: 100%;
+}
+
+.balance-eyebrow--force {
+  color: var(--accent);
+}
+
+.balance-eyebrow--watch {
+  color: var(--fg-muted);
+}
+
+
+.traits {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.trait {
+  border-bottom: 1px solid var(--rule);
+}
+
+.trait-btn {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-xs);
+  padding-block: var(--space-s);
+  text-align: left;
+}
+
+.trait-tick {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  margin-top: 0.5em;
+  border: 1px solid var(--rule-strong);
+  transition: background 0.4s var(--ease-out), border-color 0.4s var(--ease-out),
+    transform 0.4s var(--ease-out);
+}
+
+.traits--force .trait-tick {
+  border-color: var(--rule-accent);
+}
+
+.trait--open .trait-tick,
+.trait-btn:hover .trait-tick {
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: rotate(45deg);
+}
+
+.traits--watch .trait--open .trait-tick,
+.traits--watch .trait-btn:hover .trait-tick {
+  background: var(--fg-muted);
+  border-color: var(--fg-muted);
+}
+
+.trait-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15em;
+  min-width: 0;
+}
+
+.trait-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--step-1);
+  line-height: 1.2;
+}
+
+.trait-short {
+  font-size: var(--step--1);
+  color: var(--fg-muted);
+  line-height: 1.45;
+}
+
+.trait-detail {
+  overflow: hidden;
+  padding: 0 0 var(--space-s) calc(8px + var(--space-xs));
+  animation: trait-open 0.45s var(--ease-out);
+}
+
+@keyframes trait-open {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+.trait-detail p {
+  font-size: var(--step--1);
+  color: var(--fg-muted);
+  border-left: 1px solid var(--rule-accent);
+  padding-left: var(--space-xs);
+  max-width: 56ch;
+}
+
+/* --- Compétences --- */
+
+.skills {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(17rem, 100%), 1fr));
+  gap: var(--space-m);
+}
+
+.skill-group {
+  border-top: 1px solid var(--rule-strong);
+  padding-top: var(--space-s);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.skill-title {
+  font-size: var(--step-1);
+}
+
+.skill-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+}
+
+.skill-items li {
+  font-size: var(--step--1);
+  color: var(--fg-muted);
+  display: flex;
+  gap: 0.55em;
+  line-height: 1.45;
+}
+
+.skill-items li::before {
+  content: '';
+  flex: none;
+  width: 3px;
+  height: 3px;
+  margin-top: 0.7em;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.7;
+}

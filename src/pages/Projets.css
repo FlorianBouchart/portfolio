@@ -1,0 +1,300 @@
+.pj-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.pj {
+  padding-block: var(--space-2xl);
+  border-top: 1px solid var(--rule);
+}
+
+.pj:first-child {
+  border-top: none;
+  padding-top: var(--space-m);
+}
+
+.pj-head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  max-width: 40ch;
+  margin-bottom: var(--space-l);
+}
+
+.pj-index {
+  font-size: var(--step--1);
+  color: var(--accent);
+  letter-spacing: 0.1em;
+}
+
+.pj-title {
+  font-size: var(--step-3);
+}
+
+.pj-tagline {
+  color: var(--fg-muted);
+  font-size: var(--step-1);
+  margin-top: var(--space-2xs);
+}
+
+.pj-stack {
+  list-style: none;
+  margin: var(--space-xs) 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.pj-stack li {
+  font-size: var(--step--1);
+  color: var(--fg-muted);
+  border: 1px solid var(--rule);
+  border-radius: 100px;
+  padding: 0.2em 0.7em;
+}
+
+/* --- Captures --- */
+
+.pj-shots {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(24rem, 100%), 1fr));
+  gap: var(--space-m);
+  margin-bottom: var(--space-xl);
+}
+
+/* La première capture occupe toute la largeur : c'est l'image d'ouverture. */
+.pj-shots .pj-shot:first-child {
+  grid-column: 1 / -1;
+}
+
+.pj-shot {
+  margin: 0;
+}
+
+.pj-shot-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+}
+
+.pj-shot-frame {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  aspect-ratio: 16 / 10;
+  background: var(--bg-inset);
+}
+
+/* Les clips Reskope sont en 16:10, comme le cadre : contain remplit sans
+   rogner ni border. */
+.pj-shot-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.pj-shot-btn:hover .pj-shot-frame {
+  border-color: var(--rule-accent);
+}
+
+.pj-shot-zoom {
+  position: absolute;
+  right: 0.6rem;
+  bottom: 0.6rem;
+  font-size: var(--step--1);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(12, 18, 48, 0.72);
+  backdrop-filter: blur(6px);
+  padding: 0.25em 0.7em;
+  border-radius: 100px;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out);
+}
+
+.pj-shot-btn:hover .pj-shot-zoom,
+.pj-shot-btn:focus-visible .pj-shot-zoom {
+  opacity: 1;
+  transform: none;
+}
+
+.pj-shot-cap {
+  font-size: var(--step--1);
+  color: var(--fg-muted);
+  margin-top: var(--space-xs);
+  line-height: 1.5;
+}
+
+/* --- Détail --- */
+
+.pj-detail {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-m) var(--space-l);
+  border-top: 1px solid var(--rule);
+  padding-top: var(--space-l);
+}
+
+@media (max-width: 52rem) {
+  .pj-detail {
+    grid-template-columns: 1fr;
+    gap: var(--space-m);
+  }
+}
+
+.pj-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+}
+
+.pj-text {
+  color: var(--fg-muted);
+  max-width: 60ch;
+}
+
+.pj-skills {
+  list-style: none;
+  margin: var(--space-l) 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.pj-skills li {
+  font-size: var(--step--1);
+  color: var(--fg);
+  border: 1px solid var(--rule-accent);
+  border-radius: 100px;
+  padding: 0.3em 0.9em;
+}
+
+.pj-links {
+  display: flex;
+  gap: var(--space-m);
+  margin-top: var(--space-l);
+}
+
+.pj-link {
+  font-size: var(--step-0);
+  color: var(--accent);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s var(--ease-out);
+}
+
+.pj-link:hover {
+  border-bottom-color: var(--accent);
+}
+
+/* --- Mention de confidentialité --- */
+
+.pj-note {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-xs);
+  flex-wrap: wrap;
+  margin-top: var(--space-l);
+  padding: var(--space-s) var(--space-m);
+  border: 1px dashed var(--rule-strong);
+  border-radius: 8px;
+  font-size: var(--step--1);
+  color: var(--fg-muted);
+  line-height: 1.55;
+}
+
+.pj-note-badge {
+  flex: none;
+  font-size: var(--step--1);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid var(--rule-accent);
+  border-radius: 100px;
+  padding: 0.15em 0.7em;
+}
+
+/* --- Visionneuse --- */
+
+.pshot {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: grid;
+  place-items: center;
+  padding: var(--page-pad);
+  background: rgba(8, 12, 32, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  animation: pshot-in 0.35s var(--ease-out);
+}
+
+@keyframes pshot-in {
+  from {
+    opacity: 0;
+  }
+}
+
+.pshot-inner {
+  max-width: 74rem;
+  width: 100%;
+  max-height: 90svh;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
+  animation: pshot-rise 0.45s var(--ease-out);
+}
+
+@keyframes pshot-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+  }
+}
+
+.pshot-img {
+  width: 100%;
+  max-height: 74svh;
+  object-fit: contain;
+  border: 1px solid var(--rule-strong);
+  border-radius: 8px;
+  background: var(--bg-inset);
+}
+
+.pshot-bar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-s) var(--space-m);
+}
+
+.pshot-caption {
+  font-size: var(--step--1);
+  color: #aab2cc;
+  max-width: 60ch;
+}
+
+.pshot-close {
+  flex: none;
+  font-size: var(--step--1);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #eef1fa;
+  border: 1px solid rgba(238, 241, 250, 0.3);
+  padding: 0.5em 1em;
+  border-radius: 100px;
+  transition: background 0.3s var(--ease-out), color 0.3s var(--ease-out);
+}
+
+.pshot-close:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+}

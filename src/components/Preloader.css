@@ -1,0 +1,63 @@
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+/* Cinq lamelles bleu royal, strictement identiques : elles couvrent l'écran
+   puis se lèvent en cascade. Aucune bordure entre elles pour un rendu net et
+   parfaitement régulier quelle que soit la largeur. */
+.pre-slats {
+  position: absolute;
+  inset: 0;
+  display: flex;
+}
+
+.pre-slat {
+  flex: 1 1 0;
+  background: var(--royal-500);
+  will-change: transform;
+}
+
+/* Le logo occupe le centre exact de l'écran ; le filet et le compteur vivent
+   en bas, sans décaler le centrage. */
+.pre-content {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.pre-logo {
+  will-change: transform, opacity;
+}
+
+.pre-foot {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: var(--space-m);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-s);
+}
+
+.pre-rule {
+  display: block;
+  width: min(38vw, 18rem);
+  height: 1px;
+  background: rgba(255, 255, 255, 0.85);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.pre-counter {
+  position: absolute;
+  right: var(--page-pad);
+  bottom: 0;
+  font-size: var(--step-1);
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+}

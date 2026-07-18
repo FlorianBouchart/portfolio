@@ -1,0 +1,168 @@
+.rea-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.rea {
+  position: relative;
+  padding-block: var(--space-2xl);
+  border-top: 1px solid var(--rule);
+  isolation: isolate;
+}
+
+/* Le nom de l'organisation en filigrane : situe le projet d'un coup d'œil
+   et dérive à contre-sens du scroll pour la profondeur. */
+.rea-watermark {
+  position: absolute;
+  top: 0;
+  right: -0.04em;
+  z-index: -1;
+  font-family: var(--font-display);
+  font-weight: 750;
+  font-size: clamp(4rem, 13vw, 11rem);
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px color-mix(in srgb, var(--accent) 26%, transparent);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+@media (max-width: 56rem) {
+  .rea-watermark {
+    font-size: clamp(2.6rem, 14vw, 4rem);
+    top: 0.4rem;
+  }
+}
+
+.rea-head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  margin-bottom: var(--space-l);
+}
+
+.rea-org {
+  font-size: var(--step--1);
+  color: var(--accent);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.rea-title {
+  font-size: var(--step-3);
+  max-width: 18ch;
+}
+
+/* Desktop : contexte | filet | action. Le filet est entre les deux volets,
+   il relie littéralement le problème à sa réponse. */
+.rea-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
+  gap: var(--space-l);
+  align-items: start;
+}
+
+/* Mobile : le filet devient un rail à gauche qui longe les deux volets
+   empilés. Trois enfants, deux colonnes : chaque volet est explicitement
+   placé en colonne 2, le rail occupe toute la hauteur en colonne 1 —
+   sans quoi le second volet tombe dans la colonne de 1px. */
+@media (max-width: 56rem) {
+  .rea-grid {
+    grid-template-columns: 1px minmax(0, 1fr);
+    grid-auto-rows: auto;
+    gap: var(--space-m);
+  }
+  .rea-grid .rea-step {
+    grid-column: 2;
+  }
+  .rea-grid .rea-line {
+    grid-column: 1;
+    grid-row: 1 / -1;
+  }
+}
+
+.rea-line {
+  align-self: stretch;
+  width: 1px;
+  background: var(--rule-accent);
+  will-change: transform;
+  position: relative;
+}
+
+/* Le nœud de données au bout du filet : il « arrive » avec le tracé. */
+.rea-line::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  transform: translateX(-50%);
+}
+
+.rea-step {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+}
+
+.rea-step-label {
+  color: var(--accent);
+  opacity: 0.85;
+}
+
+.rea-step-text {
+  color: var(--fg-muted);
+  max-width: 52ch;
+}
+
+.rea-metrics {
+  list-style: none;
+  margin: var(--space-l) 0 0;
+  padding: var(--space-s) 0 0;
+  border-top: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-s);
+}
+
+@media (max-width: 40rem) {
+  .rea-metrics {
+    grid-template-columns: 1fr;
+    gap: var(--space-xs);
+  }
+}
+
+.rea-metrics li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15em;
+}
+
+.rea-metric-value {
+  font-size: var(--step-3);
+  color: var(--accent);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.rea-metric-label {
+  font-size: var(--step--1);
+  color: var(--fg-muted);
+}
+
+.rea-more {
+  border-top: 1px solid var(--rule);
+  padding-block: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.rea-more-text {
+  color: var(--fg-faint);
+  max-width: 52ch;
+}

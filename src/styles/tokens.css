@@ -1,0 +1,305 @@
+/**
+ * Design system : blanc et bleu royal.
+ *
+ * Identité choisie par Florian : fond blanc, encre marine, bleu royal en
+ * signal. Le bleu n'est jamais un aplat décoratif : filets, chiffres, états
+ * actifs, et les surfaces pleines des cartes du deck d'accueil.
+ *
+ * Le thème sombre (bleu nuit) existe en option via la bascule de la nav ;
+ * le clair est le défaut identitaire, quelle que soit la préférence système.
+ */
+
+:root {
+  /* --- Primitives --- */
+  --royal-700: #16299b;
+  --royal-600: #1d35c4;
+  --royal-500: #2646e4;
+  --royal-400: #4f6af0;
+  --royal-300: #8ea1ff;
+  --royal-100: #e9edfe;
+
+  --night-900: #060a1c;
+  --night-800: #0a1026;
+  --night-700: #101736;
+  --night-600: #182046;
+
+  --paper-0: #ffffff;
+  --paper-100: #f6f8fd;
+  --paper-200: #edf1fa;
+
+  --marine-900: #0c1230;
+  --marine-600: #4a5270;
+  --marine-400: #7a8099;
+
+  /* --- Sémantique (thème clair par défaut) --- */
+  --bg: var(--paper-0);
+  --bg-raised: var(--paper-100);
+  --bg-inset: var(--paper-200);
+  --fg: var(--marine-900);
+  --fg-muted: var(--marine-600);
+  --fg-faint: var(--marine-400);
+  --accent: var(--royal-500);
+  --accent-strong: var(--royal-600);
+  /* Texte posé sur une surface accent. */
+  --on-accent: #ffffff;
+
+  --rule: rgba(12, 18, 48, 0.1);
+  --rule-strong: rgba(12, 18, 48, 0.22);
+  --rule-accent: rgba(38, 70, 228, 0.35);
+  --halo: rgba(38, 70, 228, 0.06);
+
+  /* --- Typographie ---
+     Syne : géométrique large à la personnalité immédiate, pour les titres.
+     Schibsted Grotesk : grotesque nordique, chaleureuse et très lisible.
+     Spline Sans Mono : étiquettes techniques, chiffres tabulaires. */
+  --font-display: 'Syne Variable', 'Syne', 'Avenir Next', sans-serif;
+  --font-body: 'Schibsted Grotesk Variable', 'Schibsted Grotesk', -apple-system, sans-serif;
+  --font-mono: 'Spline Sans Mono Variable', 'Spline Sans Mono', ui-monospace, monospace;
+
+  --step--1: clamp(0.78rem, 0.75rem + 0.15vw, 0.86rem);
+  --step-0: clamp(0.95rem, 0.9rem + 0.25vw, 1.05rem);
+  --step-1: clamp(1.15rem, 1.05rem + 0.5vw, 1.4rem);
+  --step-2: clamp(1.45rem, 1.25rem + 1vw, 2rem);
+  --step-3: clamp(1.9rem, 1.5rem + 2vw, 3rem);
+  --step-4: clamp(2.5rem, 1.7rem + 4vw, 4.75rem);
+  --step-5: clamp(3.2rem, 1.6rem + 8vw, 9rem);
+
+  /* --- Espace --- */
+  --space-2xs: 0.375rem;
+  --space-xs: 0.625rem;
+  --space-s: 1rem;
+  --space-m: 1.75rem;
+  --space-l: 3rem;
+  --space-xl: 5rem;
+  --space-2xl: clamp(5rem, 10vw, 9rem);
+
+  /* Gouttière latérale : min 1.5rem sur mobile pour que rien ne colle au bord. */
+  --page-pad: clamp(1.5rem, 5vw, 5rem);
+  --measure: 68ch;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --nav-h: 4.25rem;
+}
+
+/* Thème sombre : bleu nuit, même charpente. */
+:root[data-theme='dark'] {
+  --bg: var(--night-900);
+  --bg-raised: var(--night-800);
+  --bg-inset: var(--night-700);
+  --fg: #e9ecf8;
+  --fg-muted: #9aa3c4;
+  --fg-faint: #6d7594;
+  --accent: var(--royal-300);
+  --accent-strong: #aab9ff;
+  --on-accent: var(--night-900);
+
+  --rule: rgba(233, 236, 248, 0.1);
+  --rule-strong: rgba(233, 236, 248, 0.22);
+  --rule-accent: rgba(142, 161, 255, 0.4);
+  --halo: rgba(142, 161, 255, 0.07);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Pas de scroll-behavior: smooth ici : Lenis anime déjà le défilement, et les
+   deux mécanismes se disputent la position (ancres et scripts atterrissent faux). */
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  font-synthesis-weight: none;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Syne se porte gras et serré : c'est là qu'elle prend son caractère. */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* --- Primitives de composition --- */
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.measure {
+  max-width: var(--measure);
+}
+
+.shell {
+  padding-inline: var(--page-pad);
+  margin-inline: auto;
+  max-width: 88rem;
+}
+
+.section {
+  padding-block: var(--space-2xl);
+  border-top: 1px solid var(--rule);
+  position: relative;
+}
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-m);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-xl);
+}
+
+.section-title {
+  font-size: var(--step-3);
+}
+
+.section-sub {
+  color: var(--fg-muted);
+  font-size: var(--step-0);
+  max-width: 46ch;
+  margin-left: auto;
+}
+
+/* --- Pages --- */
+
+.page {
+  min-height: 100svh;
+}
+
+/* padding-block seulement : le raccourci `padding` remettait à zéro le
+   padding-inline de .shell, collant le titre au bord gauche sur toutes les
+   pages internes. */
+.page-hero {
+  padding-block: calc(var(--nav-h) + clamp(3rem, 9vh, 6rem)) var(--space-l);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
+}
+
+.page-title {
+  font-size: var(--step-4);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+/* Syne est large : un mot comme « Certifications » doit tenir à 375px. */
+@media (max-width: 40rem) {
+  .page-title {
+    font-size: clamp(1.9rem, 9.5vw, 2.6rem);
+  }
+}
+
+.page-intro {
+  color: var(--fg-muted);
+  max-width: 58ch;
+  font-size: var(--step-0);
+}
+
+/* --- Texte animé (AnimatedText) --- */
+
+.at-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-block: 0.08em;
+  margin-inline-end: 0.26em;
+}
+
+.at-mask:last-child {
+  margin-inline-end: 0;
+}
+
+.at-word {
+  display: inline-block;
+  will-change: transform;
+}
+
+/* --- Scène perspective (Tilt, deck) --- */
+
+.tilt-scene {
+  perspective: 900px;
+}
+
+/* Accessibilité : l'immersion ne doit jamais coûter le confort. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

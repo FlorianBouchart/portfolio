@@ -1,0 +1,254 @@
+/* Mobile d'abord : bloc compact et statique — un panneau sticky qui mange
+   l'écran d'un téléphone est pire que pas de panneau du tout. */
+.edu-controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-l);
+  padding-block: var(--space-xs);
+  border-bottom: 1px solid var(--rule);
+}
+
+/* Desktop : la place existe, les contrôles suivent le lecteur. */
+@media (min-width: 60rem) {
+  .edu-controls {
+    gap: var(--space-s);
+    position: sticky;
+    top: var(--nav-h);
+    z-index: 20;
+    background: color-mix(in srgb, var(--bg) 90%, transparent);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding-block: var(--space-s);
+  }
+}
+
+.edu-search {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  border: 1px solid var(--rule-strong);
+  padding: 0.85em 1em;
+  transition: border-color 0.4s var(--ease-out);
+}
+
+.edu-search:focus-within {
+  border-color: var(--accent);
+}
+
+.edu-search-icon {
+  color: var(--fg-faint);
+  flex: none;
+}
+
+.edu-search:focus-within .edu-search-icon {
+  color: var(--accent);
+}
+
+.edu-input {
+  flex: 1;
+  min-width: 0;
+  background: none;
+  border: none;
+  color: var(--fg);
+  font: inherit;
+  font-size: var(--step-0);
+  outline: none;
+}
+
+.edu-input::placeholder {
+  color: var(--fg-faint);
+}
+
+/* Retire la croix native de Safari/Chrome : elle casse l'alignement du champ. */
+.edu-input::-webkit-search-cancel-button {
+  appearance: none;
+}
+
+.edu-clear {
+  font-size: var(--step--1);
+  color: var(--fg-faint);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  flex: none;
+  transition: color 0.3s var(--ease-out);
+}
+
+.edu-clear:hover {
+  color: var(--accent);
+}
+
+.edu-filters {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+}
+
+/* Mobile : chaque famille de filtres tient sur UNE ligne qui défile
+   horizontalement — compacte, le pouce balaie, rien ne s'empile. */
+.edu-filter-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  /* Fondu au bord droit : indique qu'il reste des filtres à faire défiler. */
+  mask-image: linear-gradient(90deg, #000 calc(100% - 2.5rem), transparent);
+  padding-block: 2px;
+}
+
+.edu-filter-row::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 60rem) {
+  .edu-filter-row {
+    flex-wrap: wrap;
+    overflow-x: visible;
+    mask-image: none;
+  }
+}
+
+.edu-filter-label {
+  flex: none;
+  width: 5.5rem;
+}
+
+@media (max-width: 60rem) {
+  .edu-filter-label {
+    width: auto;
+    padding-right: 0.35rem;
+  }
+}
+
+.edu-chip {
+  flex: none;
+  white-space: nowrap;
+}
+
+.edu-chip {
+  font-size: var(--step--1);
+  color: var(--fg-muted);
+  border: 1px solid var(--rule);
+  border-radius: 100px;
+  padding: 0.3em 0.8em;
+  transition: color 0.3s var(--ease-out), border-color 0.3s var(--ease-out),
+    background 0.3s var(--ease-out);
+}
+
+.edu-chip:hover {
+  color: var(--fg);
+  border-color: var(--rule-strong);
+}
+
+.edu-chip--on {
+  color: var(--on-accent);
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.edu-chip-year {
+  opacity: 0.65;
+  font-size: 0.9em;
+}
+
+.edu-count {
+  font-size: var(--step--1);
+  color: var(--accent);
+  letter-spacing: 0.08em;
+}
+
+.edu-empty {
+  color: var(--fg-muted);
+  padding-block: var(--space-l);
+  text-align: center;
+  border: 1px dashed var(--rule);
+}
+
+.edu-results {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.edu-group-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-m);
+  padding-bottom: var(--space-s);
+  border-bottom: 1px solid var(--rule-strong);
+  margin-bottom: var(--space-s);
+}
+
+.edu-group-years {
+  font-size: var(--step--1);
+  color: var(--accent);
+  letter-spacing: 0.1em;
+}
+
+.edu-group-title {
+  font-size: var(--step-2);
+  margin-top: 0.15em;
+}
+
+.edu-group-meta {
+  font-size: var(--step--1);
+  color: var(--fg-faint);
+  margin-top: 0.3em;
+}
+
+.edu-distinction {
+  color: var(--accent);
+}
+
+.edu-group-count {
+  font-size: var(--step-2);
+  color: var(--fg);
+  line-height: 1;
+  flex: none;
+}
+
+.edu-group-count-of {
+  color: var(--fg-faint);
+  font-size: 0.55em;
+}
+
+.edu-courses {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(22rem, 100%), 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+
+.edu-course {
+  background: var(--bg);
+  padding: var(--space-xs) var(--space-s);
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+}
+
+.edu-course-name {
+  font-size: var(--step-0);
+  line-height: 1.35;
+}
+
+.edu-course-name mark {
+  background: color-mix(in srgb, var(--accent) 35%, transparent);
+  color: inherit;
+  border-radius: 2px;
+  padding: 0 0.1em;
+}
+
+.edu-course-cat {
+  font-size: var(--step--1);
+  color: var(--fg-faint);
+  letter-spacing: 0.05em;
+}

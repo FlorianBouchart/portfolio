@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://florian-bouchart.github.io/sitemap.xml

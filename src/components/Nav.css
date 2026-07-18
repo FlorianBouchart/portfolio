@@ -1,0 +1,301 @@
+.skip-link {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -110%);
+  z-index: 2100;
+  background: var(--accent);
+  color: var(--on-accent);
+  padding: 0.7em 1.4em;
+  font-size: var(--step--1);
+  border-radius: 0 0 4px 4px;
+  transition: transform 0.3s var(--ease-out);
+}
+
+.skip-link:focus {
+  transform: translate(-50%, 0);
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1100;
+  transition: background 0.5s var(--ease-out), border-color 0.5s var(--ease-out),
+    box-shadow 0.5s var(--ease-out);
+  border-bottom: 1px solid transparent;
+}
+
+.nav--scrolled {
+  background: color-mix(in srgb, var(--bg) 80%, transparent);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border-bottom-color: var(--rule);
+}
+
+.nav--open {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom-color: transparent;
+}
+
+.nav-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-m);
+  height: var(--nav-h);
+}
+
+.nav-mark {
+  display: inline-flex;
+  align-items: center;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.9rem, 2.2vw, 2.1rem);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 56rem) {
+  .nav-links {
+    display: none;
+  }
+}
+
+/* Liens en clair : lisibles au premier regard, l'état actif ne se devine pas. */
+.nav-link {
+  position: relative;
+  font-size: var(--step--1);
+  font-weight: 500;
+  color: var(--fg-muted);
+  padding-block: 0.4em;
+  transition: color 0.35s var(--ease-out);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.4s var(--ease-out);
+}
+
+.nav-link:hover {
+  color: var(--fg);
+}
+
+.nav-link--active {
+  color: var(--accent);
+}
+
+.nav-link:hover::after,
+.nav-link--active::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+.nav-tools {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  flex: none;
+}
+
+.nav-theme {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  color: var(--fg-faint);
+  transition: color 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
+}
+
+.nav-theme:hover {
+  color: var(--accent);
+  border-color: var(--rule-accent);
+}
+
+.nav-lang {
+  display: inline-flex;
+  border: 1px solid var(--rule);
+  border-radius: 100px;
+  padding: 2px;
+}
+
+.nav-lang-btn {
+  font-size: var(--step--1);
+  letter-spacing: 0.08em;
+  color: var(--fg-faint);
+  padding: 0.3em 0.7em;
+  border-radius: 100px;
+  transition: color 0.3s var(--ease-out), background 0.3s var(--ease-out);
+}
+
+.nav-lang-btn--active {
+  color: var(--on-accent);
+  background: var(--accent);
+}
+
+/* Le contact sort de la liste : c'est l'action, pas une page parmi d'autres. */
+.nav-cta {
+  font-size: var(--step--1);
+  font-weight: 500;
+  color: var(--accent);
+  border: 1px solid var(--rule-accent);
+  border-radius: 100px;
+  padding: 0.45em 1.1em;
+  transition: background 0.35s var(--ease-out), color 0.35s var(--ease-out),
+    border-color 0.35s var(--ease-out);
+}
+
+.nav-cta:hover,
+.nav-cta--active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+}
+
+@media (max-width: 56rem) {
+  .nav-cta {
+    display: none;
+  }
+}
+
+/* --- Burger (mobile) --- */
+
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  width: 2.25rem;
+  height: 2.25rem;
+  align-items: center;
+}
+
+.nav-burger span {
+  display: block;
+  width: 1.35rem;
+  height: 1.5px;
+  background: var(--fg);
+  transition: transform 0.45s var(--ease-out);
+}
+
+.nav--open .nav-burger span:first-child {
+  transform: translateY(3.75px) rotate(45deg);
+}
+
+.nav--open .nav-burger span:last-child {
+  transform: translateY(-3.75px) rotate(-45deg);
+}
+
+@media (max-width: 56rem) {
+  .nav-burger {
+    display: flex;
+  }
+}
+
+/* --- Menu plein écran --- */
+
+.menu {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: var(--bg);
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 0.65s var(--ease-in-out);
+  visibility: hidden;
+}
+
+.menu--open {
+  clip-path: inset(0 0 0 0);
+  visibility: visible;
+}
+
+.menu-inner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-l);
+  padding-top: var(--nav-h);
+}
+
+.menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1em;
+}
+
+.menu-link {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2rem, 9vw, 3.4rem);
+  line-height: 1.15;
+  color: var(--fg);
+  transition: color 0.3s var(--ease-out), padding-left 0.4s var(--ease-out);
+}
+
+.menu-link:hover,
+.menu-link--active {
+  color: var(--accent);
+  padding-left: 0.4rem;
+}
+
+.menu-meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  border-top: 1px solid var(--rule);
+  padding-top: var(--space-s);
+}
+
+.menu-status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: var(--step--1);
+  color: var(--accent-strong);
+}
+
+.menu-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.menu-mail {
+  font-size: var(--step-0);
+  color: var(--fg-muted);
+}
