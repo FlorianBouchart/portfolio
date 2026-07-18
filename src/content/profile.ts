@@ -24,8 +24,8 @@ export const profile = {
     en: 'Available for a permanent role from September 2026',
   } as I18n,
   location: {
-    fr: 'Lille & métropole · Hauts-de-France · ouvert à Paris et au full remote',
-    en: 'Lille & metro area · Hauts-de-France · open to Paris and full remote',
+    fr: 'Hauts-de-France · ouvert à Paris et à toute la France · mobile',
+    en: 'Hauts-de-France · open to Paris and anywhere in France · happy to relocate',
   } as I18n,
   languages: [
     { fr: 'Français : natif', en: 'French: native' },

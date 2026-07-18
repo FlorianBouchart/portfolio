@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://florian-bouchart.github.io/sitemap.xml
+Sitemap: https://florianbouchart.github.io/portfolio/sitemap.xml

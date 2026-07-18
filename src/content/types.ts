@@ -129,6 +129,8 @@ export interface Recommendation {
   photo?: string;
   text: I18n;
   linkedin?: string;
+  /** Lien public vers la référence (hors LinkedIn), ex. engagement-jeunes.com. */
+  url?: string;
   date?: string;
 }
 

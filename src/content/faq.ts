@@ -18,8 +18,8 @@ export const faq: FaqItem[] = [
   {
     q: { fr: 'Quelle est votre zone de mobilité ?', en: 'What is your geographic mobility?' },
     a: {
-      fr: 'Je cible prioritairement <strong>Lille et sa métropole</strong> et la région des Hauts-de-France (Valenciennes). Je reste ouvert à <strong>Paris</strong> ou à un poste en <strong>full télétravail</strong> partout en France. Je suis véhiculé.',
-      en: 'I primarily target <strong>Lille and its metropolitan area</strong> and the Hauts-de-France region (Valenciennes). I am open to <strong>Paris</strong> or a <strong>full remote</strong> position anywhere in France. I have a car.',
+      fr: 'Je suis basé dans les <strong>Hauts-de-France</strong> (Lille, Valenciennes), mais je suis <strong>plutôt mobile</strong> : je reste ouvert à <strong>Paris</strong> comme à des propositions <strong>partout en France</strong>, ainsi qu’au full télétravail. Je suis véhiculé.',
+      en: 'I am based in the <strong>Hauts-de-France</strong> region (Lille, Valenciennes) but I am <strong>happy to relocate</strong>: I am open to <strong>Paris</strong> and to opportunities <strong>anywhere in France</strong>, as well as to full remote. I have a car.',
     },
   },
   {

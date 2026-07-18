@@ -23,7 +23,10 @@ const proof = [
   },
   {
     value: '30 à 800 k€',
-    label: { fr: 'd’investissements analysés en rentabilité', en: 'investments assessed for profitability' },
+    label: {
+      fr: 'd’investissement par affaire, analysés en rentabilité',
+      en: 'of investment per deal, assessed for profitability',
+    },
   },
   {
     value: '100k',

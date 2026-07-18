@@ -54,7 +54,7 @@ export function Recommendations() {
                   </span>
                 </span>
 
-                {r.linkedin && (
+                {r.linkedin ? (
                   <a
                     className="reco-link mono"
                     href={r.linkedin}
@@ -67,6 +67,21 @@ export function Recommendations() {
                   >
                     LinkedIn ↗
                   </a>
+                ) : (
+                  r.url && (
+                    <a
+                      className="reco-link mono"
+                      href={r.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={t({
+                        fr: `Référence publique de ${r.name}`,
+                        en: `${r.name}’s public reference`,
+                      })}
+                    >
+                      {t({ fr: 'Voir la référence', en: 'View reference' })} ↗
+                    </a>
+                  )
                 )}
               </figcaption>
             </li>
