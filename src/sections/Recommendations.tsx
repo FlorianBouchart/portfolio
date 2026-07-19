@@ -1,6 +1,4 @@
-import { useRef } from 'react';
 import { useLocale } from '../lib/i18n';
-import { useReveal } from '../lib/motion';
 import { asset } from '../lib/asset';
 import { recommendations } from '../content/recommendations';
 import './Recommendations.css';
@@ -14,9 +12,12 @@ const initials = (name: string) =>
     .join('');
 
 export function Recommendations() {
-  const root = useRef<HTMLElement>(null);
   const { t } = useLocale();
-  useReveal(root, [recommendations.length]);
+
+  // La révélation à l'entrée dans le viewport est gérée par le useReveal(root) de
+  // la page qui héberge cette section (Home). En redéclencher un ici créait un
+  // second gsap.from sur les mêmes nœuds .reco : les deux tweens se marchaient
+  // dessus et laissaient l'opacité coincée (~0.07), d'où le texte « gris ».
 
   // Aucune recommandation : la section disparaît plutôt que d'afficher un vide.
   // Elle réapparaît seule dès qu'un objet est ajouté dans content/recommendations.ts.
@@ -25,7 +26,7 @@ export function Recommendations() {
   const single = recommendations.length === 1;
 
   return (
-    <section className="section" id="recommandations" ref={root}>
+    <section className="section" id="recommandations">
       <div className="shell">
         <div className="section-head">
           <h2 className="section-title">{t({ fr: 'Recommandations', en: 'Recommendations' })}</h2>

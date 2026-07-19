@@ -4,7 +4,6 @@ import { useReveal, usePageTitle } from '../lib/motion';
 import { asset } from '../lib/asset';
 import { AnimatedText } from '../components/AnimatedText';
 import { traits } from '../content/traits';
-import { visions } from '../content/vision';
 import { skillGroups } from '../content/skills';
 import './Profil.css';
 
@@ -79,33 +78,17 @@ export function Profil() {
       </header>
 
       <div className="shell section" style={{ borderTop: 'none', paddingTop: 0 }}>
-        {/* Ce que je recherche */}
+        {/* Ce que je recherche — une seule ligne de positionnement, volontairement.
+            Le détail se raconte de vive voix, pas sur la page. */}
         <section className="profil-seek" data-reveal>
           <h2 className="profil-h mono">{t({ fr: 'Ce que je recherche', en: 'What I’m looking for' })}</h2>
           <p className="profil-seek-lead">
             {t({
-              fr: 'Ma porte d’entrée dans les métiers du produit numérique : product ownership, business analysis, AMOA, gestion de produit. Ce n’est pas un choix par défaut : c’est la direction vers laquelle mon alternance chez GRDF, ma marque Desrèves et mon Master m’ont progressivement amené.',
-              en: 'My way into digital product roles: product ownership, business analysis, business consulting (AMOA), product management. Not a fallback: it’s the direction my apprenticeship at GRDF, my brand Desrèves and my Master’s degree have gradually led me toward.',
-            })}
-          </p>
-          <p className="profil-seek-lead">
-            {t({
-              fr: 'Ce que je veux ensuite : un rôle où je fais le lien entre un besoin métier et une solution numérique, dans une équipe qui me laisse apprendre et monter en compétence.',
-              en: 'What I want next: a role where I connect a business need to a digital solution, in a team that lets me learn and grow.',
+              fr: 'Une porte d’entrée dans les métiers du produit numérique : product ownership, business analysis, AMOA, gestion de produit. Pas un choix par défaut, la direction vers laquelle GRDF, Desrèves et mon Master m’ont mené.',
+              en: 'A way into digital product roles: product ownership, business analysis, business consulting (AMOA), product management. Not a fallback, but the direction GRDF, Desrèves and my Master’s degree have led me toward.',
             })}
           </p>
         </section>
-
-        {/* Mon fil conducteur */}
-        <h2 className="profil-h mono">{t({ fr: 'Mon fil conducteur', en: 'My throughline' })}</h2>
-        <div className="visions">
-          {visions.map((v) => (
-            <article className="vision" key={v.title.fr} data-reveal data-reveal-group="vision">
-              <h3 className="vision-title">{t(v.title)}</h3>
-              <p className="vision-desc">{t(v.desc)}</p>
-            </article>
-          ))}
-        </div>
 
         {/* Points forts et axes de progression */}
         <div className="balance">
