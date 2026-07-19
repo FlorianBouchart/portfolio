@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { useLocale } from '../lib/i18n';
 import { useReveal, usePageTitle } from '../lib/motion';
+import { asset } from '../lib/asset';
 import { AnimatedText } from '../components/AnimatedText';
 import { traits } from '../content/traits';
 import { visions } from '../content/vision';
@@ -55,20 +56,20 @@ export function Profil() {
           </h1>
           <p className="page-intro">
             {t({
-              fr: 'Ma façon de travailler, mes points forts, mes axes de progression et mes compétences.',
-              en: 'How I work, my strengths, my areas of growth and my skills.',
+              fr: 'Qui je suis, ce que je cherche, et comment j’y suis venu, sans généralités.',
+              en: 'Who I am, what I’m looking for, and how I got here, no generalities.',
             })}
           </p>
           <p className="profil-hero-tag mono">
             {t({
-              fr: 'Entrepreneur et jeune diplômé, entre conseil, produit et gestion de projet numérique.',
-              en: 'Entrepreneur and recent graduate, between consulting, product and digital project management.',
+              fr: 'Entrepreneur et jeune diplômé, en route vers le produit numérique.',
+              en: 'Entrepreneur and recent graduate, heading into digital product.',
             })}
           </p>
         </div>
         <figure className="profil-portrait" data-reveal>
           <img
-            src="/media/portrait.jpg"
+            src={asset('/media/portrait.jpg')}
             alt={t({ fr: 'Portrait de Florian Bouchart', en: 'Portrait of Florian Bouchart' })}
             width={900}
             height={1144}
@@ -78,8 +79,25 @@ export function Profil() {
       </header>
 
       <div className="shell section" style={{ borderTop: 'none', paddingTop: 0 }}>
-        {/* Méthode */}
-        <h2 className="profil-h mono">{t({ fr: 'Méthode', en: 'Method' })}</h2>
+        {/* Ce que je recherche */}
+        <section className="profil-seek" data-reveal>
+          <h2 className="profil-h mono">{t({ fr: 'Ce que je recherche', en: 'What I’m looking for' })}</h2>
+          <p className="profil-seek-lead">
+            {t({
+              fr: 'Ma porte d’entrée dans les métiers du produit numérique : product ownership, business analysis, AMOA, gestion de produit. Ce n’est pas un choix par défaut : c’est la direction vers laquelle mon alternance chez GRDF, ma marque Desrèves et mon Master m’ont progressivement amené.',
+              en: 'My way into digital product roles: product ownership, business analysis, business consulting (AMOA), product management. Not a fallback: it’s the direction my apprenticeship at GRDF, my brand Desrèves and my Master’s degree have gradually led me toward.',
+            })}
+          </p>
+          <p className="profil-seek-lead">
+            {t({
+              fr: 'Ce que je veux ensuite : un rôle où je fais le lien entre un besoin métier et une solution numérique, dans une équipe qui me laisse apprendre et monter en compétence.',
+              en: 'What I want next: a role where I connect a business need to a digital solution, in a team that lets me learn and grow.',
+            })}
+          </p>
+        </section>
+
+        {/* Mon fil conducteur */}
+        <h2 className="profil-h mono">{t({ fr: 'Mon fil conducteur', en: 'My throughline' })}</h2>
         <div className="visions">
           {visions.map((v) => (
             <article className="vision" key={v.title.fr} data-reveal data-reveal-group="vision">

@@ -18,16 +18,16 @@ export const traits: Trait[] = [
   {
     id: 'force-2',
     kind: 'force',
-    title: { fr: 'Traducteur Métier/IT', en: 'Business/IT Translator' },
-    short: { fr: 'Facilité à lier les enjeux opérationnels globaux aux réalités techniques', en: 'Ease in connecting global operational stakes to technical realities' },
-    detail: { fr: 'Je sais parler aux équipes métiers pour comprendre leurs besoins et aux équipes techniques pour traduire ces besoins en spécifications claires. Cette double casquette fluidifie la coordination projet.', en: 'I know how to speak with business teams to understand their needs and with technical teams to translate those needs into clear specifications. This dual hat streamlines project coordination.' },
+    title: { fr: 'Traduire le besoin', en: 'Translating the need' },
+    short: { fr: 'Comprendre un besoin métier et le rendre exploitable côté technique', en: 'Understanding a business need and making it usable on the technical side' },
+    detail: { fr: 'Chez GRDF comme sur Desrèves, mon rôle a souvent été de comprendre un besoin côté métier et de le transformer en quelque chose d\'exploitable côté technique ou opérationnel. C\'est précisément ce pont qui m\'attire dans l\'AMOA et la business analysis.', en: 'At GRDF and on Desrèves, my role was often to understand a need on the business side and turn it into something usable on the technical or operational side. That bridge is exactly what draws me to business analysis and requirements work.' },
   },
   {
     id: 'force-3',
     kind: 'force',
-    title: { fr: 'Communication & Synthèse', en: 'Communication & Synthesis' },
-    short: { fr: 'Animation de comités et rédaction de documentations claires', en: 'Committee facilitation and clear documentation writing' },
-    detail: { fr: 'Je sais structurer l\'information, animer des réunions de pilotage et produire des livrables de synthèse adaptés à chaque interlocuteur (direction, métier, technique).', en: 'I know how to structure information, lead steering meetings, and produce synthesis deliverables tailored to each audience (management, business, technical).' },
+    title: { fr: 'Structurer et restituer', en: 'Structuring and reporting back' },
+    short: { fr: 'Rendre une information complexe claire pour chaque interlocuteur', en: 'Making complex information clear for every audience' },
+    detail: { fr: 'Je sais structurer une information complexe et la restituer clairement selon l\'interlocuteur (direction, métier, technique). Chez GRDF, je produisais les fiches de synthèse et les supports destinés aux collectivités.', en: 'I can structure complex information and report it back clearly depending on the audience (management, business, technical). At GRDF, I produced the summary sheets and materials for the municipalities.' },
   },
   {
     id: 'force-4',
@@ -67,9 +67,9 @@ export const traits: Trait[] = [
   {
     id: 'watch-4',
     kind: 'watch',
-    title: { fr: 'L\'art de la délégation', en: 'The Art of Delegation' },
-    short: { fr: 'Ayant souvent porté des projets de A à Z, j\'aiguise ma posture de « faire faire »', en: 'Having often managed projects end-to-end, I\'m sharpening my \'make it happen through others\' posture' },
-    detail: { fr: 'Habitué à gérer des projets de bout en bout, je travaille à lâcher prise sur l\'opérationnel pour me concentrer sur le pilotage et faire confiance à l\'équipe.', en: 'Used to managing projects from start to finish, I\'m working on letting go of pure operations to focus on steering and trusting the team.' },
+    title: { fr: 'M\'appuyer sur l\'équipe', en: 'Leaning on the team' },
+    short: { fr: 'Habitué à tout porter seul, j\'apprends à déléguer davantage', en: 'Used to carrying everything myself, I\'m learning to delegate more' },
+    detail: { fr: 'Sur Desrèves et au BDE, j\'ai souvent tout porté de bout en bout. Je travaille à mieux déléguer et à m\'appuyer sur les autres plutôt qu\'à vouloir tout maîtriser moi-même.', en: 'On Desrèves and at the student union, I often carried everything end to end. I\'m working on delegating better and leaning on others rather than trying to control everything myself.' },
   },
   {
     id: 'watch-5',

@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { useLocale } from '../lib/i18n';
 import { useReveal } from '../lib/motion';
+import { asset } from '../lib/asset';
 import { recommendations } from '../content/recommendations';
 import './Recommendations.css';
 
@@ -40,7 +41,7 @@ export function Recommendations() {
 
               <figcaption className="reco-author">
                 {r.photo ? (
-                  <img className="reco-photo" src={r.photo} alt="" loading="lazy" width={96} height={96} />
+                  <img className="reco-photo" src={asset(r.photo)} alt="" loading="lazy" width={96} height={96} />
                 ) : (
                   <span className="reco-photo reco-photo--fallback mono" aria-hidden="true">
                     {initials(r.name)}

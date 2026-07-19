@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLocale } from '../lib/i18n';
 import { useReveal, usePageTitle } from '../lib/motion';
+import { asset } from '../lib/asset';
 import { AnimatedText } from '../components/AnimatedText';
 import { projects } from '../content/projects';
 import type { MediaItem } from '../content/types';
@@ -29,8 +30,8 @@ function Shot({ media, onClose }: { media: MediaItem; onClose: () => void }) {
         {media.video ? (
           <video
             className="pshot-img"
-            src={media.video}
-            poster={media.src}
+            src={asset(media.video)}
+            poster={asset(media.src)}
             autoPlay
             muted
             loop
@@ -39,7 +40,7 @@ function Shot({ media, onClose }: { media: MediaItem; onClose: () => void }) {
             aria-label={t(media.alt)}
           />
         ) : (
-          <img className="pshot-img" src={media.src} alt={t(media.alt)} />
+          <img className="pshot-img" src={asset(media.src)} alt={t(media.alt)} />
         )}
         <div className="pshot-bar">
           {media.caption && <p className="pshot-caption">{t(media.caption)}</p>}
@@ -102,8 +103,8 @@ export function Projets() {
                           // dès l'arrivée dans la galerie, sans clic requis.
                           <video
                             className="pj-shot-img"
-                            src={m.video}
-                            poster={m.src}
+                            src={asset(m.video)}
+                            poster={asset(m.src)}
                             autoPlay
                             muted
                             loop
@@ -112,7 +113,7 @@ export function Projets() {
                             aria-label={t(m.alt)}
                           />
                         ) : (
-                          <img className="pj-shot-img" src={m.src} alt={t(m.alt)} loading="lazy" decoding="async" />
+                          <img className="pj-shot-img" src={asset(m.src)} alt={t(m.alt)} loading="lazy" decoding="async" />
                         )}
                         <span className="pj-shot-zoom mono" aria-hidden="true">
                           {m.video ? t({ fr: 'Voir en grand', en: 'View larger' }) : t({ fr: 'Agrandir', en: 'Enlarge' })}

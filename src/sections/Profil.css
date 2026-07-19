@@ -34,6 +34,9 @@
   border-radius: 12px;
   overflow: hidden;
   background: var(--bg-inset);
+  /* Cadrage carré : le visage prend toute la place, l'image ne s'étire plus en
+     hauteur. object-position recadre sur le haut du buste (visage vers 20 %). */
+  aspect-ratio: 1 / 1;
   /* Angle bleu royal en haut à gauche : rappel discret du logo. */
   position: relative;
 }
@@ -54,13 +57,33 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 20%;
   display: block;
 }
 
 @media (max-width: 52rem) {
   .profil-portrait {
-    max-width: 15rem;
+    max-width: 16rem;
   }
+}
+
+/* --- Ce que je recherche --- */
+
+.profil-seek {
+  margin-bottom: var(--space-2xl);
+}
+
+.profil-seek-lead {
+  font-size: var(--step-1);
+  line-height: 1.55;
+  color: var(--fg);
+  max-width: 62ch;
+}
+
+.profil-seek-lead + .profil-seek-lead {
+  margin-top: var(--space-s);
+  color: var(--fg-muted);
+  font-size: var(--step-0);
 }
 
 /* --- Titres de blocs --- */

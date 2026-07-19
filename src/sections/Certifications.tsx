@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLocale } from '../lib/i18n';
 import { useReveal, usePageTitle } from '../lib/motion';
+import { asset } from '../lib/asset';
 import { AnimatedText } from '../components/AnimatedText';
 import { Tilt } from '../components/Tilt';
 import { certifications } from '../content/certifications';
@@ -28,7 +29,7 @@ function Lightbox({ cert, onClose }: { cert: Certification; onClose: () => void 
   return (
     <div className="lb" role="dialog" aria-modal="true" aria-label={t(cert.name)} onClick={onClose}>
       <div className="lb-inner" onClick={(e) => e.stopPropagation()}>
-        <img className="lb-img" src={cert.image} alt={t(cert.name)} />
+        <img className="lb-img" src={cert.image ? asset(cert.image) : undefined} alt={t(cert.name)} />
         <div className="lb-meta">
           <div>
             <h3 className="lb-title">{t(cert.name)}</h3>
@@ -79,7 +80,7 @@ export function Certifications() {
                 <span className="cert-figure">
                   <img
                     className="cert-img"
-                    src={c.image}
+                    src={c.image ? asset(c.image) : undefined}
                     alt=""
                     loading="lazy"
                     decoding="async"
