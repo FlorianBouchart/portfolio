@@ -104,6 +104,22 @@
   border-top: 1px solid var(--rule);
 }
 
+/* Sur mobile, la rangée photo · identité · lien est trop serrée : le lien
+   « Voir la référence » venait chevaucher le rôle. On l'envoie sur sa propre
+   ligne, sous l'identité, et on aligne la photo en haut du bloc. */
+@media (max-width: 40rem) {
+  .reco-author {
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .reco-link {
+    margin-left: 0;
+    margin-top: var(--space-xs);
+    width: 100%;
+  }
+}
+
 .reco-photo {
   width: 2.75rem;
   height: 2.75rem;

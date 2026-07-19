@@ -245,10 +245,14 @@ button {
   line-height: 1;
 }
 
-/* Syne est large : un mot comme « Certifications » doit tenir à 375px. */
+/* Syne est large : le plus long titre (« Recommandations », 15 lettres) doit tenir
+   sur une ligne dès 360px. On abaisse la taille en conséquence et on garde la
+   césure comme filet de sécurité (jamais de texte rogné hors écran). */
 @media (max-width: 40rem) {
   .page-title {
-    font-size: clamp(1.9rem, 9.5vw, 2.6rem);
+    font-size: clamp(1.4rem, 7.2vw, 2.6rem);
+    overflow-wrap: break-word;
+    hyphens: auto;
   }
 }
 
