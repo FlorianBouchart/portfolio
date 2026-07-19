@@ -443,10 +443,14 @@
   letter-spacing: -0.02em;
 }
 
-/* Syne est large : « Certifications » doit tenir dans la carte à 375px. */
+/* Syne est large et la carte a peu de largeur utile une fois les marges déduites.
+   On cale sur le mot le plus long (« Recommandations ») pour que tous les titres
+   tiennent sur une ligne, à taille identique, dès 320px. Césure en filet. */
 @media (max-width: 56rem) {
   .deck-card-title {
-    font-size: clamp(1.8rem, 8.5vw, 2.6rem);
+    font-size: clamp(1.05rem, 5.3vw, 2.6rem);
+    overflow-wrap: break-word;
+    hyphens: auto;
   }
 }
 
@@ -490,6 +494,9 @@
   .deck-card {
     position: static;
     min-height: 17rem;
+    /* Marges intérieures resserrées : sur un écran étroit, 24px de chaque côté
+       mangeaient la largeur utile dont le titre a besoin. */
+    padding: clamp(1.15rem, 5vw, 2.25rem);
   }
 }
 

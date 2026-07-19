@@ -59,10 +59,17 @@ export function Nav() {
       getLenis()?.stop();
       document.body.style.overflow = 'hidden';
       if (menu && !prefersReducedMotion()) {
+        // Révélation ligne par ligne : chaque lien monte depuis son masque
+        // (li en overflow hidden), décalé, pendant que le rideau du menu s'ouvre.
         gsap.fromTo(
-          menu.querySelectorAll('.menu-link, .menu-meta'),
-          { yPercent: 40, opacity: 0 },
-          { yPercent: 0, opacity: 1, duration: 0.6, ease: 'power3.out', stagger: 0.06, delay: 0.15 }
+          menu.querySelectorAll('.menu-link'),
+          { yPercent: 118 },
+          { yPercent: 0, duration: 0.8, ease: 'power4.out', stagger: 0.06, delay: 0.12 }
+        );
+        gsap.fromTo(
+          menu.querySelectorAll('.menu-meta'),
+          { opacity: 0, y: 18 },
+          { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out', delay: 0.5 }
         );
       }
     } else {

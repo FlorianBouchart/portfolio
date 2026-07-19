@@ -258,11 +258,21 @@
   gap: 0.1em;
 }
 
+/* Chaque entrée est un masque : le lien monte depuis dessous à l'ouverture
+   (révélation ligne par ligne). Le petit padding évite de rogner les jambages
+   (« j », « p ») au repos. */
+.menu-list li {
+  overflow: hidden;
+  padding-block: 0.08em;
+}
+
 .menu-link {
   display: inline-block;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(2rem, 9vw, 3.4rem);
+  /* Calé sur le mot le plus long (« Recommandations ») pour tenir sans déborder
+     dès 320px, tous les liens gardant la même taille. */
+  font-size: clamp(1.5rem, 7.6vw, 3.4rem);
   line-height: 1.15;
   color: var(--fg);
   transition: color 0.3s var(--ease-out), padding-left 0.4s var(--ease-out);
