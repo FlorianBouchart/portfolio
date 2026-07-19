@@ -13,6 +13,7 @@ import { Certifications } from './sections/Certifications';
 import { Profil } from './sections/Profil';
 import { Contact } from './sections/Contact';
 import { Projets } from './pages/Projets';
+import { Recommandations } from './pages/Recommandations';
 import { NotFound } from './pages/NotFound';
 
 /**
@@ -49,6 +50,7 @@ function Shell() {
           <Route path="/approche" element={<Profil />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/projets" element={<Projets />} />
+          <Route path="/recommandations" element={<Recommandations />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

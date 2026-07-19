@@ -6,21 +6,20 @@ import { getLenis, gsap, prefersReducedMotion } from '../lib/motion';
 import { TLink } from '../lib/transition';
 import { Logo } from './Logo';
 import { projects } from '../content/projects';
+import { recommendations } from '../content/recommendations';
 import { profile } from '../content/profile';
 import './Nav.css';
 
-const baseLinks = [
+/** Les pages Projets et Recommandations n'entrent dans la nav que lorsqu'elles ont du contenu. */
+const links = [
   { to: '/', label: { fr: 'Accueil', en: 'Home' } },
   { to: '/realisations', label: { fr: 'Réalisations', en: 'Work' } },
+  ...(projects.length ? [{ to: '/projets', label: { fr: 'Projets', en: 'Projects' } }] : []),
   { to: '/formation', label: { fr: 'Formation', en: 'Education' } },
   { to: '/certifications', label: { fr: 'Certifications', en: 'Certifications' } },
+  ...(recommendations.length ? [{ to: '/recommandations', label: { fr: 'Recommandations', en: 'Recommendations' } }] : []),
   { to: '/profil', label: { fr: 'Profil', en: 'Profile' } },
 ];
-
-/** La page Projets n'entre dans la nav que lorsqu'elle a du contenu. */
-const links = projects.length
-  ? [...baseLinks.slice(0, 2), { to: '/projets', label: { fr: 'Projets', en: 'Projects' } }, ...baseLinks.slice(2)]
-  : baseLinks;
 
 export function Nav() {
   const { locale, setLocale, t } = useLocale();

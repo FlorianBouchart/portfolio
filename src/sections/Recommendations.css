@@ -49,6 +49,45 @@
   text-wrap: pretty;
 }
 
+/* Texte replié : on ne montre que le début (surtout utile sur mobile, où la
+   recommandation complète fait un mur de texte). Le bouton déroule le reste. */
+.reco-quote--clamp p {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 6;
+  line-clamp: 6;
+  overflow: hidden;
+}
+
+.reco-more {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  margin-top: calc(-1 * var(--space-s));
+  font-size: var(--step--1);
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  transition: gap 0.3s var(--ease-out);
+}
+
+.reco-more:hover {
+  gap: 0.75em;
+}
+
+.reco-more-icon {
+  width: 0.5em;
+  height: 0.5em;
+  border-right: 1.6px solid currentColor;
+  border-bottom: 1.6px solid currentColor;
+  transform: translateY(-0.12em) rotate(45deg);
+  transition: transform 0.3s var(--ease-out);
+}
+
+.reco-more[aria-expanded='true'] .reco-more-icon {
+  transform: translateY(0.12em) rotate(-135deg);
+}
+
 /* Une recommandation longue se lit mieux en corps de texte qu'en gros
    display : taille confortable, largeur de lecture maîtrisée. */
 .recos--single .reco-quote p {
@@ -111,4 +150,38 @@
 
 .reco-link:hover {
   color: var(--accent);
+}
+
+/* « D'autres recommandations arrivent bientôt. » */
+.recos-soon {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  margin-top: var(--space-xl);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.02em;
+  color: var(--fg-muted);
+}
+
+.recos-soon-dot {
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 16%, transparent);
+  animation: recos-soon-pulse 2.4s var(--ease-out) infinite;
+}
+
+@keyframes recos-soon-pulse {
+  50% {
+    opacity: 0.4;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .recos-soon-dot {
+    animation: none;
+  }
 }

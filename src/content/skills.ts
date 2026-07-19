@@ -35,7 +35,7 @@ export const skillGroups: SkillGroup[] = [
     id: 'outils-ia',
     title: { fr: 'Outils & IA', en: 'Tools & AI' },
     items: [
-      { fr: 'Jira / Notion / Linear', en: 'Jira / Notion / Linear' },
+      { fr: 'Notion · Jira / Linear (notions, prise en main rapide)', en: 'Notion · Jira / Linear (basics, quick to pick up)' },
       { fr: 'Outils de ticketing & Suivi de bugs', en: 'Ticketing & Bug Tracking Tools' },
       { fr: 'Prompting IA avancé (Gains de prod.)', en: 'Advanced AI Prompting (Productivity)' },
       { fr: 'Outils de présentation (PPT, Canva, Gamma, NotebookLM)', en: 'Presentation Tools (PPT, Canva, Gamma, NotebookLM)' },

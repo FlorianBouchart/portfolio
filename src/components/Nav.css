@@ -68,7 +68,9 @@
 .nav-links {
   display: flex;
   align-items: center;
-  gap: clamp(0.9rem, 2.2vw, 2.1rem);
+  /* Resserré pour que les 7 entrées (dont « Recommandations ») tiennent sur une
+     ligne dès l'apparition de la nav desktop (56rem). */
+  gap: clamp(0.7rem, 1.7vw, 1.7rem);
   list-style: none;
   margin: 0;
   padding: 0;

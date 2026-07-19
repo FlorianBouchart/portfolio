@@ -4,9 +4,9 @@ import { gsap, hasFinePointer, oncePreloaded, prefersReducedMotion, useReveal, u
 import { TLink } from '../lib/transition';
 import { HeroCanvas } from '../components/HeroCanvas';
 import { Counter } from '../components/Counter';
-import { Recommendations } from '../sections/Recommendations';
 import { profile } from '../content/profile';
 import { projects } from '../content/projects';
+import { recommendations } from '../content/recommendations';
 import './Home.css';
 
 /**
@@ -103,6 +103,23 @@ const deck = [
     },
     tag: { fr: 'Méthode & compétences', en: 'Method & skills' },
   },
+  ...(recommendations.length
+    ? [
+        {
+          to: '/recommandations',
+          tone: 'marine',
+          title: { fr: 'Recommandations', en: 'Recommendations' },
+          desc: {
+            fr: 'Ce que celles et ceux qui m’ont encadré disent de mon travail, référence à l’appui.',
+            en: 'What the people who supervised me say about my work, with a public reference.',
+          },
+          tag: {
+            fr: `${recommendations.length} recommandation${recommendations.length > 1 ? 's' : ''}`,
+            en: `${recommendations.length} recommendation${recommendations.length > 1 ? 's' : ''}`,
+          },
+        } as const,
+      ]
+    : []),
 ] as const;
 
 export function Home() {
@@ -112,8 +129,8 @@ export function Home() {
   const { t, locale } = useLocale();
   usePageTitle(
     locale === 'fr'
-      ? 'Florian Bouchart · Systèmes d’information & transformation digitale'
-      : 'Florian Bouchart · Information Systems & Digital Transformation'
+      ? 'Florian Bouchart · Systèmes d’information · Produit numérique'
+      : 'Florian Bouchart · Information Systems · Digital Product'
   );
   useReveal(root);
 
@@ -215,7 +232,31 @@ export function Home() {
   useEffect(() => {
     const zone = deckRef.current;
     if (!zone) return;
-    if (prefersReducedMotion() || !window.matchMedia('(min-width: 56rem)').matches) return;
+    if (prefersReducedMotion()) return;
+
+    // Sur mobile, le pin 3D scrubé est capricieux au tactile. On garde l'esprit
+    // « carte qu'on pose » avec une entrée 2D propre : la carte monte depuis le bas
+    // en fondu, avec un très léger zoom qui se stabilise. Pas de bascule 3D (qui
+    // déformait la carte sur un grand format), juste un mouvement net et lisible.
+    if (!window.matchMedia('(min-width: 56rem)').matches) {
+      const ctx = gsap.context(() => {
+        gsap.utils.toArray<HTMLElement>('.deck-card').forEach((card) => {
+          gsap.fromTo(
+            card,
+            { opacity: 0, y: 60, scale: 0.965 },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: 0.72,
+              ease: 'power2.out',
+              scrollTrigger: { trigger: card, start: 'top 90%', once: true },
+            }
+          );
+        });
+      }, zone);
+      return () => ctx.revert();
+    }
 
     const ctx = gsap.context(() => {
       const cards = gsap.utils.toArray<HTMLElement>('.deck-card');
@@ -374,8 +415,6 @@ export function Home() {
         </div>
       </section>
 
-      {/* Se masque tant que content/recommendations.ts est vide. */}
-      <Recommendations />
     </div>
   );
 }

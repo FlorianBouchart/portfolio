@@ -84,8 +84,8 @@ export function Profil() {
           <h2 className="profil-h mono">{t({ fr: 'Ce que je recherche', en: 'What I’m looking for' })}</h2>
           <p className="profil-seek-lead">
             {t({
-              fr: 'Une porte d’entrée dans les métiers du produit numérique : product ownership, business analysis, AMOA, gestion de produit. Pas un choix par défaut, la direction vers laquelle GRDF, Desrèves et mon Master m’ont mené.',
-              en: 'A way into digital product roles: product ownership, business analysis, business consulting (AMOA), product management. Not a fallback, but the direction GRDF, Desrèves and my Master’s degree have led me toward.',
+              fr: 'Une porte d’entrée dans le conseil, le produit ou la gestion de projet digital. Pas un choix par défaut : c’est ce que j’ai constaté sur le terrain et ce qui me passionne qui m’y mènent.',
+              en: 'A way into consulting, product or digital project management. Not a fallback: it’s what I’ve seen on the ground, and what genuinely excites me, that lead me there.',
             })}
           </p>
         </section>

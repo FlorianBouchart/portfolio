@@ -57,7 +57,9 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 20%;
+  /* Cadrage remonté vers le sommet du crâne : on voit toute la tête, quitte à
+     montrer un peu moins de torse (demande de Florian, 19/07). */
+  object-position: center 6%;
   display: block;
 }
 
