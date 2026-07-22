@@ -3,12 +3,16 @@ import type { Recommendation } from './types';
 /**
  * Recommandations.
  *
- * Ajoutée le 18/07/2026 : référence d'Isabelle Kustosz (enseignante-chercheuse
- * à l'IAE Valenciennes), publiée sur engagement-jeunes.com. D'autres suivront.
+ * - Isabelle Kustosz (enseignante-chercheuse, IAE Valenciennes), publiée sur
+ *   engagement-jeunes.com — ajoutée le 18/07/2026.
+ * - Sourav Hasan (UX/UI Designer, rencontré à la Summer School de Vaasa),
+ *   recommandation LinkedIn — ajoutée le 20/07/2026.
  *
  * Le design gère 1, 3 ou 12 recommandations sans retouche : la section se masque
  * si le tableau est vide, s'affiche en pleine largeur pour une seule, et en
  * grille au-delà. Photo : déposer un carré (400×400 min) dans public/recommendations/.
+ * Le texte de Sourav est d'origine en anglais ; la version FR est une traduction
+ * fidèle (le site étant bilingue, chaque recommandation a ses deux langues).
  */
 export const recommendations: Recommendation[] = [
   {
@@ -25,5 +29,19 @@ export const recommendations: Recommendation[] = [
     },
     url: 'https://www.engagement-jeunes.com/fr/recommandations/48873/florian-bouchart.html',
     date: '2026-03-06',
+  },
+  {
+    id: 'sourav-hasan',
+    name: 'Sourav Hasan',
+    role: {
+      fr: 'UX/UI Designer',
+      en: 'UX/UI Designer',
+    },
+    org: 'Astha IT',
+    text: {
+      fr: 'J’ai eu le plaisir de travailler avec Florian pendant la Summer School de Vaasa. Il a constamment fait preuve d’un état d’esprit collaboratif, d’excellentes qualités de communication et d’une vraie curiosité d’apprendre. Florian a activement contribué aux discussions et aux projets de groupe, s’est parfaitement adapté à notre environnement multiculturel et a toujours apporté une énergie positive à l’équipe. Son état d’esprit entrepreneurial et sa créativité en ont fait un coéquipier précieux. Je suis convaincu qu’il aura un impact positif dans n’importe quel poste et lui souhaite une belle réussite.',
+      en: 'I had the pleasure of working with Florian during the Vaasa Summer Class. He consistently demonstrated a collaborative mindset, strong communication skills, and a genuine curiosity for learning. Florian actively contributed to group discussions and projects, adapted well to our multicultural environment, and always brought positive energy to the team. His entrepreneurial mindset and creativity made him a valuable teammate. I’m confident he will make a positive impact in any future role and wish him continued success.',
+    },
+    date: '2026-07-20',
   },
 ];

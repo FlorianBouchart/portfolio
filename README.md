@@ -1,60 +1,60 @@
-# Florian Bouchart — dossier professionnel
+# Florian Bouchart — Portfolio
 
-Site compagnon du CV. Le PDF donne les faits ; ce site donne les coulisses, les preuves et la méthode. **Ce n'est pas un duplicata du CV** — et il ne propose volontairement aucun téléchargement de CV (les CV sont adaptés à chaque candidature et envoyés directement).
+Site compagnon de mon CV : le PDF donne les faits, ce site donne les coulisses, les preuves et la méthode. Il ne duplique pas le CV et ne propose volontairement aucun téléchargement — les CV sont adaptés à chaque candidature et envoyés directement.
 
-React 19 · TypeScript · Vite · React Router · GSAP/ScrollTrigger · Lenis. Bilingue FR/EN. Aucun appel tiers au runtime (polices auto-hébergées).
+**En ligne → https://florianbouchart.github.io/portfolio/**
+
+Conçu, écrit et développé de bout en bout (contenu, direction artistique et code), avec l'aide de Claude Code.
+
+## Stack
+
+React 19 · TypeScript · Vite · React Router · GSAP / ScrollTrigger · Lenis · Canvas 2D. Bilingue FR / EN. Polices auto-hébergées, aucun appel tiers au runtime. Déployé sur GitHub Pages via GitHub Actions.
+
+## Pages
+
+| Route | Page | Contenu |
+|---|---|---|
+| `/` | Accueil | Préloader, hero (particules, parallaxe souris, compteurs) et le deck 3D des pages |
+| `/realisations` | Réalisations | 5 études de cas (contexte → travail → résultats), animées au scroll |
+| `/projets` | Projets | Étude de projet (Reskope), avec vidéos des animations |
+| `/formation` | Formation | 72 cours cherchables et filtrables |
+| `/certifications` | Certifications | Galerie tilt 3D + visionneuse plein écran |
+| `/recommandations` | Recommandations | Références, texte long repliable |
+| `/profil` | Profil | Ce que je recherche, points forts / axes de progression, compétences |
+| `/contact` | Contact | FAQ + carte de contact |
+| `*` | 404 | Page introuvable |
+
+Chaque navigation interne passe par un **rideau de transition** (`lib/transition.tsx`) : les liens internes utilisent `<TLink>`, jamais `<Link>` nu.
 
 ## Démarrer
 
 ```bash
 npm install
 npm run dev      # http://localhost:5173
-npm run build    # vérifie les types puis produit dist/
+npm run build    # vérifie les types (tsc) puis produit dist/
 npm run preview  # sert dist/ localement
 ```
 
-## Architecture multi-pages
+## Le contenu est séparé du design
 
-| Route | Page | Contenu |
-|---|---|---|
-| `/` | Accueil | Préloader, hero (particules, parallaxe souris, compteurs), les « quatre portes », recommandations |
-| `/realisations` | Réalisations | 3 études de cas problème → approche → résultats, filigranes au scroll |
-| `/formation` | Formation | 72 cours cherchables, filtres compacts (scroll horizontal sur mobile) |
-| `/certifications` | Certifications | Galerie tilt 3D + visionneuse plein écran |
-| `/approche` | Approche | Convictions, forces / points d'attention, compétences |
-| `/contact` | Contact | FAQ + carte contact |
-| `/projets` | Projets | Masquée de la nav tant que `content/projects.ts` est vide |
-| `*` | 404 | Page introuvable |
-
-Chaque navigation interne passe par le **rideau de transition** (`lib/transition.tsx`) : tous les liens internes utilisent `<TLink>`, jamais `<Link>` nu — sinon la page change sans transition.
-
-## Le contenu n'est pas dans le design
-
-Tout le contenu vit dans `src/content/*.ts`, typé par `types.ts`. Chaque chaîne visible est un `I18n = { fr, en }` : oublier une traduction est une **erreur de compilation**. `recommendations.ts` et `projects.ts` sont vides → leurs sections/pages se masquent seules et réapparaissent dès qu'un objet est ajouté.
-
-Le lien GitHub du footer/contact s'active en renseignant `socials.github` dans `content/profile.ts`.
+Tout le contenu vit dans `src/content/*.ts`, typé par `types.ts`. Chaque chaîne visible est un `I18n = { fr, en }` : oublier une traduction est une **erreur de compilation**. Les sections `recommendations` et `projects` se masquent d'elles-mêmes si elles sont vides et réapparaissent (navigation comprise) dès qu'un objet est ajouté.
 
 ## Système d'animation
 
-- **Préloader** (`components/Preloader.tsx`) : une fois par session (`sessionStorage`). Émet `fb:ready` — les entrées de hero attendent ce signal via `oncePreloaded()`.
-- **Transitions de pages** : rideau d'encre en `clip-path`, navigation derrière le rideau, scroll remis à zéro pendant l'occultation.
-- **`useReveal(ref)`** : révélation des `[data-reveal]` groupés par `data-reveal-group`, une seule fois.
-- **`Counter`** : chiffres qui se construisent. Les éléments visibles au chargement comptent dès `fb:ready` (un ScrollTrigger créé pendant le verrouillage du scroll n'évalue son état qu'au premier défilement — piège connu, déjà corrigé une fois).
-- **`HeroCanvas`** : particules 2D avec profondeur et parallaxe souris. Canvas 2D et non Three.js : l'effet ne justifie pas ~150 Ko de WebGL face au budget Lighthouse. La boucle se coupe hors viewport et onglet caché.
-- **`Cursor`, `Magnetic`, `Tilt`, `AnimatedText`** : micro-interactions ; toutes inertes en `pointer: coarse` et/ou `prefers-reduced-motion`.
-- **Lenis** piloté par le ticker GSAP (une seule boucle rAF). `anchors: { offset: -68 }` reste indispensable pour les ancres.
+- **Préloader** (`components/Preloader.tsx`) : une fois par session (`sessionStorage`). Émet `fb:ready` ; les entrées du hero attendent ce signal via `oncePreloaded()`.
+- **Transitions de pages** : rideau d'encre en `clip-path`, navigation effectuée derrière le rideau, scroll remis à zéro pendant l'occultation.
+- **`useReveal(ref)`** : révèle les `[data-reveal]` groupés par `data-reveal-group`, une seule fois. Une section imbriquée dans une page qui appelle déjà `useReveal` ne le rappelle pas (sinon deux tweens se marchent dessus).
+- **`Counter`** : chiffres qui se construisent ; les éléments visibles au chargement comptent dès `fb:ready`.
+- **`HeroCanvas`** : particules en Canvas 2D (profondeur + parallaxe souris), choix assumé face à WebGL pour le budget Lighthouse ; la boucle se coupe hors viewport et onglet caché.
+- **`Cursor`, `Magnetic`, `Tilt`, `AnimatedText`** : micro-interactions, inertes en `pointer: coarse` et/ou `prefers-reduced-motion`.
+- **Lenis** piloté par le ticker GSAP (une seule boucle rAF).
 
-`prefers-reduced-motion` est respecté partout : préloader sauté, transitions instantanées, particules coupées, reveals neutralisés.
+`prefers-reduced-motion` est respecté partout : préloader sauté, transitions instantanées, particules coupées, révélations neutralisées.
 
-## Déploiement (GitHub Pages)
+## Déploiement
 
-`.github/workflows/deploy.yml` : build + publication à chaque push sur `main`, avec copie `index.html → 404.html` pour que les routes profondes (`/formation`…) survivent au rafraîchissement.
+`.github/workflows/deploy.yml` reconstruit et publie le site à chaque push sur `main` (build avec `VITE_BASE=/portfolio/`, copie `index.html → 404.html` pour que les routes profondes survivent à un rafraîchissement). Source des Pages : *GitHub Actions*.
 
-**Réglages à faire une fois :**
-1. *Settings → Pages → Source = GitHub Actions*.
-2. Site de **projet** (`user.github.io/mon-repo`) : variable de dépôt `VITE_BASE` = `/mon-repo/`. Site utilisateur : rien.
-3. Remplacer l'URL de démonstration `https://florian-bouchart.github.io/` dans `index.html`, `public/robots.txt`, `public/sitemap.xml`.
+## Licence
 
-## Ce qu'il manque
-
-Voir [`../CONTENU-SOURCE.md`](../CONTENU-SOURCE.md) — inventaire des sources, contradictions relevées, éléments à fournir (projets, recommandation, photo HD, pseudo GitHub, statut Scrum/SAFe).
+Code sous licence MIT. Le contenu éditorial, les visuels et les documents personnels ne sont pas réutilisables.
