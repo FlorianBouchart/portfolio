@@ -438,9 +438,15 @@
 .deck-card-title {
   font-family: var(--font-display);
   font-weight: 750;
-  font-size: clamp(2.6rem, 7vw, 6rem);
+  /* La carte est plafonnée à 76rem alors que le titre grandissait avec la
+     fenêtre (7vw) : sur un grand écran, « Recommandations » débordait de la
+     carte. On abaisse le coefficient et le plafond pour qu'il tienne dans la
+     carte figée, quelle que soit la taille d'écran. Césure en filet. */
+  font-size: clamp(2.6rem, 6vw, 5rem);
   line-height: 0.95;
   letter-spacing: -0.02em;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 /* Syne est large et la carte a peu de largeur utile une fois les marges déduites.

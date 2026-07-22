@@ -270,9 +270,9 @@
   display: inline-block;
   font-family: var(--font-display);
   font-weight: 700;
-  /* Calé sur le mot le plus long (« Recommandations ») pour tenir sans déborder
-     dès 320px, tous les liens gardant la même taille. */
-  font-size: clamp(1.5rem, 7.6vw, 3.4rem);
+  /* Calé sur le mot le plus long (« Recommandations ») pour tenir avec une marge
+     confortable dès 320px, tous les liens gardant la même taille. */
+  font-size: clamp(1.35rem, 7vw, 3.4rem);
   line-height: 1.15;
   color: var(--fg);
   transition: color 0.3s var(--ease-out), padding-left 0.4s var(--ease-out);

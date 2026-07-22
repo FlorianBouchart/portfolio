@@ -51,7 +51,10 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
           },
         })
         .set(el, { display: 'block' })
-        .set(slats, { yPercent: 101 })
+        // scaleX > 1 : les lamelles se chevauchent légèrement pour ne jamais
+        // laisser de couture sous-pixel entre elles (visible surtout sur les
+        // écrans à mise à l'échelle fractionnaire, type Windows 125/150 %).
+        .set(slats, { yPercent: 101, scaleX: 1.03 })
         .set(mark, { opacity: 0, scale: 0.9 })
         .set(el.querySelectorAll('.logo-trace'), { strokeDasharray: 1, strokeDashoffset: 1 })
         .set(el.querySelectorAll('.logo-node'), { scale: 0, transformOrigin: '37px 27px' })
