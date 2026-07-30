@@ -117,8 +117,10 @@ export interface Project {
   github?: string;
   demo?: string;
   media?: MediaItem[];
-  /** Mention de confidentialité affichée sous le projet (contenus anonymisés, etc.). */
+  /** Mention affichée sous le projet (confidentialité, provenance des données…). */
   note?: I18n;
+  /** Libellé du badge de la note. Par défaut « Confidentiel ». */
+  noteBadge?: I18n;
 }
 
 export interface Recommendation {

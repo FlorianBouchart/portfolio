@@ -147,6 +147,32 @@ export function Projets() {
               )}
             </div>
 
+            {p.metrics && p.metrics.length > 0 && (
+              <ul className="pj-metrics">
+                {p.metrics.map((m) => (
+                  <li key={m.label.fr} data-reveal data-reveal-group={`pjm-${p.id}`}>
+                    <span className="pj-metric-value">{m.value}</span>
+                    <span className="pj-metric-label">{t(m.label)}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            {/* Ce qui a coincé, et comment ça a été résolu : c'est le travail réel. */}
+            {p.challenges && p.challenges.length > 0 && (
+              <div className="pj-challenges">
+                <p className="eyebrow">{t({ fr: 'Ce qui a coincé', en: 'What went wrong' })}</p>
+                <ol className="pj-challenge-list">
+                  {p.challenges.map((c) => (
+                    <li className="pj-challenge" key={c.problem.fr} data-reveal data-reveal-group={`pjc-${p.id}`}>
+                      <p className="pj-challenge-problem">{t(c.problem)}</p>
+                      <p className="pj-challenge-solution">{t(c.solution)}</p>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            )}
+
             {p.skills && (
               <ul className="pj-skills">
                 {p.skills.map((s) => (
@@ -172,7 +198,9 @@ export function Projets() {
 
             {p.note && (
               <p className="pj-note">
-                <span className="pj-note-badge mono">{t({ fr: 'Confidentiel', en: 'Confidential' })}</span>
+                <span className="pj-note-badge mono">
+                  {t(p.noteBadge ?? { fr: 'Confidentiel', en: 'Confidential' })}
+                </span>
                 {t(p.note)}
               </p>
             )}
