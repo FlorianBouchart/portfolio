@@ -38,6 +38,12 @@ function Lightbox({ cert, onClose }: { cert: Certification; onClose: () => void 
             </p>
             {cert.note && <p className="lb-note">{t(cert.note)}</p>}
             {cert.credentialId && <p className="lb-id mono">ID : {cert.credentialId}</p>}
+            {/* Lien de vérification chez l'émetteur : un recruteur peut contrôler la certification. */}
+            {cert.url && (
+              <a className="lb-verify mono" href={cert.url} target="_blank" rel="noopener noreferrer">
+                {t({ fr: 'Vérifier la certification', en: 'Verify credential' })} ↗
+              </a>
+            )}
           </div>
           <button type="button" className="lb-close mono" onClick={onClose} ref={closeRef}>
             {t({ fr: 'Fermer', en: 'Close' })} <span aria-hidden="true">✕</span>

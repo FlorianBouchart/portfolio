@@ -214,6 +214,20 @@
   word-break: break-all;
 }
 
+/* Lien de vérification chez l'émetteur, sous l'identifiant. */
+.lb-verify {
+  display: inline-block;
+  margin-top: 0.5em;
+  font-size: var(--step--1);
+  color: #fff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  transition: border-color 0.3s var(--ease-out);
+}
+
+.lb-verify:hover {
+  border-bottom-color: #fff;
+}
+
 .lb-close {
   flex: none;
   font-size: var(--step--1);

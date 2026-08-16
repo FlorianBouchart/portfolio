@@ -11,6 +11,33 @@ import type { Certification } from './types';
  * un risque disqualifiant en entretien. À réintégrer ici dès confirmation.
  */
 export const certifications: Certification[] = [
+  // Ajout du 17/08/2026, placé en tête : c'est la certification la plus
+  // directement alignée avec les postes de Product Owner / Product Manager.
+  {
+    id: 'ibm-product-manager',
+    name: {
+      fr: 'IBM Product Manager (certificat professionnel)',
+      en: 'IBM Product Manager (Professional Certificate)',
+    },
+    issuer: 'IBM · Coursera',
+    date: '2026-08-16',
+    dateLabel: { fr: 'Août 2026', en: 'August 2026' },
+    image: '/certifications/ibm-product-manager.jpg',
+    credentialId: 'LJMMECT3GAJD',
+    url: 'https://www.coursera.org/account/accomplishments/professional-cert/certificate/LJMMECT3GAJD',
+    skills: [
+      {
+        fr: 'Cycle de vie produit, de la conception au retrait',
+        en: 'Product lifecycle, from conception to retirement',
+      },
+      { fr: 'Vision, roadmap, backlog et user stories', en: 'Vision, roadmap, backlog & user stories' },
+      { fr: 'Agile et Scrum (sprints, cérémonies, Kanban)', en: 'Agile & Scrum (sprints, ceremonies, Kanban)' },
+      {
+        fr: 'Business case, exigences marché et analyse concurrentielle',
+        en: 'Business case, market requirements & competitive analysis',
+      },
+    ],
+  },
   // Ajouts du 18/07/2026 : affichés en premier (les plus récents / les plus
   // pertinents pour un poste numérique).
   {

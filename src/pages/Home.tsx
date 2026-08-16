@@ -7,6 +7,7 @@ import { Counter } from '../components/Counter';
 import { profile } from '../content/profile';
 import { projects } from '../content/projects';
 import { recommendations } from '../content/recommendations';
+import { certifications } from '../content/certifications';
 import './Home.css';
 
 /**
@@ -91,7 +92,11 @@ const deck = [
       fr: 'Les certifications obtenues, chacune avec son justificatif lisible en grand.',
       en: 'The certifications earned, each with its supporting document readable in full.',
     },
-    tag: { fr: '5 justificatifs', en: '5 documents' },
+    // Compté depuis le contenu : le nombre était figé et devenait faux à chaque ajout.
+    tag: {
+      fr: `${certifications.length} justificatifs`,
+      en: `${certifications.length} documents`,
+    },
   },
   {
     to: '/profil',
