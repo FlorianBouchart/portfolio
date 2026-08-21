@@ -245,3 +245,96 @@
   border-color: var(--accent);
   color: var(--on-accent);
 }
+
+/* Repère « N cours » : indique un parcours dont chaque cours a son justificatif. */
+.cert-courses {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  font-size: var(--step--1);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: var(--ink, #0c1230);
+  color: #fff;
+  padding: 0.2em 0.6em;
+}
+
+/* --- Sélecteur des cours dans la visionneuse --- */
+
+.lb-courses {
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  padding-top: var(--space-s);
+  margin-top: var(--space-s);
+}
+
+.lb-courses-title {
+  font-size: var(--step--1);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8890ad;
+  margin-bottom: var(--space-xs);
+}
+
+.lb-courses-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.lb-course {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5em;
+  font-size: var(--step--1);
+  line-height: 1.3;
+  text-align: left;
+  color: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 100px;
+  padding: 0.35em 0.9em;
+  transition: color 0.3s var(--ease-out), border-color 0.3s var(--ease-out),
+    background 0.3s var(--ease-out);
+}
+
+.lb-course:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+/* Le cours affiché à l'écran, pour ne pas perdre le fil entre six documents. */
+.lb-course--on {
+  color: var(--on-accent, #fff);
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.lb-course-num {
+  opacity: 0.7;
+  font-size: 0.85em;
+}
+
+@media (max-width: 40rem) {
+  .lb-courses-list {
+    flex-direction: column;
+  }
+
+  .lb-course {
+    width: 100%;
+  }
+}
+
+/* Le sélecteur de cours allonge la visionneuse : sans défilement, les derniers
+   cours devenaient inatteignables sur un écran court. */
+.lb-inner {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* Quand un parcours est affiché, le document cède un peu de hauteur au
+   sélecteur pour que les deux tiennent ensemble. */
+.lb-inner:has(.lb-courses) .lb-img {
+  max-height: 50svh;
+}

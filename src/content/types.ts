@@ -100,6 +100,12 @@ export interface Certification {
   isAward?: boolean;
   /** Note affichée sous le visuel (ex. coquille de l'émetteur). */
   note?: I18n;
+  /**
+   * Cours composant un parcours certifiant. Chaque cours a son propre
+   * justificatif : la visionneuse permet alors de les parcourir un à un
+   * plutôt que d'ajouter autant de cartes que de cours à la page.
+   */
+  courses?: { name: I18n; image?: string; url?: string }[];
 }
 
 export interface Project {

@@ -38,6 +38,66 @@ export const certifications: Certification[] = [
       },
     ],
   },
+  // Ajout du 21/08/2026. Parcours de 5 cours : chaque cours a son propre
+  // justificatif, regroupé sous la spécialisation plutôt qu'éclaté en 5 cartes.
+  {
+    id: 'ibm-bi-foundations',
+    name: {
+      fr: 'BI Foundations with SQL, ETL and Data Warehousing',
+      en: 'BI Foundations with SQL, ETL and Data Warehousing',
+    },
+    issuer: 'IBM · Coursera',
+    date: '2026-08-20',
+    dateLabel: { fr: 'Août 2026', en: 'August 2026' },
+    image: '/certifications/ibm-bi-foundations.jpg',
+    credentialId: '4CO5N9BE2QET',
+    url: 'https://www.coursera.org/account/accomplishments/specialization/certificate/4CO5N9BE2QET',
+    skills: [
+      { fr: 'SQL et bases de données relationnelles', en: 'SQL & relational databases' },
+      { fr: 'Pipelines ETL (Shell, Airflow, Kafka)', en: 'ETL pipelines (Shell, Airflow, Kafka)' },
+      { fr: 'Modélisation d’entrepôt de données', en: 'Data warehouse modelling' },
+      { fr: 'Tableaux de bord BI (Cognos, Looker Studio)', en: 'BI dashboards (Cognos, Looker Studio)' },
+    ],
+    courses: [
+      {
+        name: {
+          fr: 'Hands-on Introduction to Linux Commands and Shell Scripting',
+          en: 'Hands-on Introduction to Linux Commands and Shell Scripting',
+        },
+        image: '/certifications/bi-01-linux.jpg',
+        url: 'https://coursera.org/verify/Y6Z07UW0ZOGJ',
+      },
+      {
+        name: {
+          fr: 'Databases and SQL for Data Science with Python',
+          en: 'Databases and SQL for Data Science with Python',
+        },
+        image: '/certifications/bi-02-sql.jpg',
+        url: 'https://coursera.org/verify/7W27INTPWOTE',
+      },
+      {
+        name: {
+          fr: 'ETL and Data Pipelines with Shell, Airflow and Kafka',
+          en: 'ETL and Data Pipelines with Shell, Airflow and Kafka',
+        },
+        image: '/certifications/bi-03-etl.jpg',
+        url: 'https://coursera.org/verify/4LQYPTXPMFDH',
+      },
+      {
+        name: { fr: 'Data Warehouse Fundamentals', en: 'Data Warehouse Fundamentals' },
+        image: '/certifications/bi-04-datawarehouse.jpg',
+        url: 'https://coursera.org/verify/3YDM57ZUZY6S',
+      },
+      {
+        name: {
+          fr: 'BI Dashboards with IBM Cognos Analytics and Google Looker',
+          en: 'BI Dashboards with IBM Cognos Analytics and Google Looker',
+        },
+        image: '/certifications/bi-05-dashboards.jpg',
+        url: 'https://coursera.org/verify/WM3PN4C84WOP',
+      },
+    ],
+  },
   // Ajouts du 18/07/2026 : affichés en premier (les plus récents / les plus
   // pertinents pour un poste numérique).
   {

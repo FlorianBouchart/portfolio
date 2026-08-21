@@ -12,6 +12,13 @@ import './Certifications.css';
 function Lightbox({ cert, onClose }: { cert: Certification; onClose: () => void }) {
   const { t } = useLocale();
   const closeRef = useRef<HTMLButtonElement>(null);
+  // -1 = le certificat du parcours lui-même ; 0..n = le cours correspondant.
+  const [vue, setVue] = useState(-1);
+  const cours = cert.courses ?? [];
+  const affiche = vue >= 0 ? cours[vue] : null;
+  const image = affiche?.image ?? cert.image;
+  const lien = affiche?.url ?? cert.url;
+  const titre = affiche ? t(affiche.name) : t(cert.name);
 
   useEffect(() => {
     closeRef.current?.focus();
@@ -29,18 +36,18 @@ function Lightbox({ cert, onClose }: { cert: Certification; onClose: () => void 
   return (
     <div className="lb" role="dialog" aria-modal="true" aria-label={t(cert.name)} onClick={onClose}>
       <div className="lb-inner" onClick={(e) => e.stopPropagation()}>
-        <img className="lb-img" src={cert.image ? asset(cert.image) : undefined} alt={t(cert.name)} />
+        <img className="lb-img" src={image ? asset(image) : undefined} alt={titre} />
         <div className="lb-meta">
           <div>
-            <h3 className="lb-title">{t(cert.name)}</h3>
+            <h3 className="lb-title">{titre}</h3>
             <p className="lb-issuer mono">
               {cert.issuer} · {t(cert.dateLabel)}
             </p>
             {cert.note && <p className="lb-note">{t(cert.note)}</p>}
-            {cert.credentialId && <p className="lb-id mono">ID : {cert.credentialId}</p>}
+            {!affiche && cert.credentialId && <p className="lb-id mono">ID : {cert.credentialId}</p>}
             {/* Lien de vérification chez l'émetteur : un recruteur peut contrôler la certification. */}
-            {cert.url && (
-              <a className="lb-verify mono" href={cert.url} target="_blank" rel="noopener noreferrer">
+            {lien && (
+              <a className="lb-verify mono" href={lien} target="_blank" rel="noopener noreferrer">
                 {t({ fr: 'Vérifier la certification', en: 'Verify credential' })} ↗
               </a>
             )}
@@ -49,6 +56,43 @@ function Lightbox({ cert, onClose }: { cert: Certification; onClose: () => void 
             {t({ fr: 'Fermer', en: 'Close' })} <span aria-hidden="true">✕</span>
           </button>
         </div>
+
+        {/* Parcours certifiant : chaque cours a son propre justificatif, consultable ici. */}
+        {cours.length > 0 && (
+          <div className="lb-courses">
+            <p className="lb-courses-title mono">
+              {t({
+                fr: `Les ${cours.length} cours du parcours`,
+                en: `The ${cours.length} courses of the programme`,
+              })}
+            </p>
+            <ul className="lb-courses-list">
+              <li>
+                <button
+                  type="button"
+                  className={`lb-course${vue === -1 ? ' lb-course--on' : ''}`}
+                  onClick={() => setVue(-1)}
+                  aria-pressed={vue === -1}
+                >
+                  {t({ fr: 'Le parcours complet', en: 'The full programme' })}
+                </button>
+              </li>
+              {cours.map((c, i) => (
+                <li key={c.name.fr}>
+                  <button
+                    type="button"
+                    className={`lb-course${vue === i ? ' lb-course--on' : ''}`}
+                    onClick={() => setVue(i)}
+                    aria-pressed={vue === i}
+                  >
+                    <span className="lb-course-num mono">{String(i + 1).padStart(2, '0')}</span>
+                    {t(c.name)}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -95,6 +139,12 @@ export function Certifications() {
                   />
                   {c.isAward && (
                     <span className="cert-award mono">{t({ fr: 'Distinction', en: 'Award' })}</span>
+                  )}
+                  {/* Signale qu'il y a plus à voir que le seul certificat de la carte. */}
+                  {c.courses && c.courses.length > 0 && (
+                    <span className="cert-courses mono">
+                      {t({ fr: `${c.courses.length} cours`, en: `${c.courses.length} courses` })}
+                    </span>
                   )}
                   <span className="cert-zoom mono" aria-hidden="true">
                     {t({ fr: 'Agrandir', en: 'Enlarge' })}
